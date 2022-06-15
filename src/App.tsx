@@ -1,26 +1,22 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { HelmetProvider } from 'react-helmet-async';
+import { Provider } from 'react-redux';
+import type {} from '@mui/lab/themeAugmentation';
+import { BrowserRouter } from 'react-router-dom';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+import { Router } from './app/routes';
+import { ThemeProvider } from './theme';
+import { store } from './app/store';
+
+const App = () => (
+  <BrowserRouter>
+    <Provider store={store}>
+      <HelmetProvider>
+        <ThemeProvider>
+          <Router />
+        </ThemeProvider>
+      </HelmetProvider>
+    </Provider>
+  </BrowserRouter>
+);
 
 export default App;
